@@ -1,4 +1,4 @@
-import Auth from "@/components/auth";
+import Auth from "@/src/components/auth";
 import React from "react";
 
 export default function Page() {

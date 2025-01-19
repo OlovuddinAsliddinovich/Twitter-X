@@ -1,11 +1,22 @@
-import Button from "@/components/ui/button";
+"use client";
 import Image from "next/image";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import Button from "../ui/button";
+import useRegisterModal from "@/hooks/useRegisterModal";
+import { useCallback } from "react";
+import RegisterModal from "../modals/register-modal";
 
 export default function Auth() {
+  const registerModal = useRegisterModal();
+
+  const onOpenRegisterModal = useCallback(() => {
+    registerModal.onOpen();
+  }, [registerModal]);
+
   return (
     <>
+      <RegisterModal />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center h-screen">
         <Image src={"/images/x.svg"} width={450} height={450} alt={"Twitter"} className="justify-self-center hidden md:block" />
         <div className="flex flex-col justify-center md:justify-between gap-6 h-full md:h-[70vh]">
@@ -42,7 +53,7 @@ export default function Auth() {
               <p className="mx-4">or</p>
               <div className="h-px w-1/2 bg-gray-700" />
             </div>
-            <Button label={"Create account"} fullWidth />
+            <Button label={"Create account"} fullWidth onClick={onOpenRegisterModal} />
             <div className="text-[10px] text-gray-400">
               By signing up, you agree to the <span className="text-sky-500">Terms of Service</span> and{" "}
               <span className="text-sky-500">Privacy Policy</span>, including <span className="text-sky-500">Cookie Use</span>.
